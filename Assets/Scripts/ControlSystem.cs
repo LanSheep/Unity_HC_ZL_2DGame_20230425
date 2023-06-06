@@ -42,19 +42,23 @@ public class ControlSystem : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        //print("水平值:" + h);
-
-        if (h != 0 || v != 0)
-        {
             //設置物體的速度
             rig.velocity = new Vector2(h, v) * moveSpeed;
-        }
-        else
-        {
-            ani.CrossFade("girl_ldle", 0);
-            // 過渡到名為 "Run" 的動畫狀態，過渡時間為 0 }
-        }
+        
         ani.SetBool(parRun, h != 0 || v != 0);
+
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) 
+        {
+            transform.eulerAngles = new Vector3(0, 180, 0);
+        
+            }
+
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) 
+        {
+            transform.eulerAngles = new Vector3(0, 0, 0);
+
+        }
+
 
     }
 }
